@@ -41,4 +41,22 @@ public class Sorts {
         }
     }
 
+    /**Insertion sort of an int array.
+    *Upon completion, the elements of the array will be in increasing order.
+    *@param data  the elements to be sorted.
+    */
+    public static void insertionSort(int[] data) {
+        for (int i = 1; i < data.length; i++) {
+            int value = data[i];
+            int insertIndex = i;
+            // scans & shifts, both in the same loop
+            // from back to front, for O(n) best case
+            while (insertIndex > 0 && data[insertIndex-1] > value) {
+                data[insertIndex] = data[insertIndex-1];
+                insertIndex--;
+            }
+            data[insertIndex] = value;
+        }
+    }
+
 }
