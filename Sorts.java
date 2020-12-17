@@ -24,4 +24,21 @@ public class Sorts {
             endAt--;
         } while (unsorted);
     }
+
+    /**Selection sort of an int array.
+    *Upon completion, the elements of the array will be in increasing order.
+    *@param data  the elements to be sorted.
+    */
+    public static void selectionSort(int[] data) {
+        for (int i = 0; i < data.length - 1; i++) {
+            int smallestIndex = i;
+            for (int j = i+1; j < data.length; j++) {
+                if (data[j] < data[smallestIndex]) {
+                    smallestIndex = j;
+                }
+            }
+            swap(data, i, smallestIndex);
+        }
+    }
+
 }
