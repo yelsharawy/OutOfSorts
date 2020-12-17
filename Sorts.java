@@ -1,4 +1,11 @@
 public class Sorts {
+
+    private static void swap(int[] data, int i, int j) {
+        int temp = data[i];
+        data[i] = data[j];
+        data[j] = temp;
+    }
+
     /**Bubble sort of an int array.
     *Upon completion, the elements of the array will be in increasing order.
     *@param data  the elements to be sorted.
@@ -11,9 +18,7 @@ public class Sorts {
             for (int i = 1; i < endAt; i++) {
                 if (data[i] < data[i-1]) {
                     unsorted = true;
-                    int temp = data[i];
-                    data[i] = data[i-1];
-                    data[i-1] = temp;
+                    swap(data, i, i-1);
                 }
             }
             endAt--;
