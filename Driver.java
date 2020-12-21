@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*;
 
 public class Driver {
 
@@ -9,18 +9,39 @@ public class Driver {
             System.out.println("supported STYLE: random,equal,sorted,reversed");
         } else {
 
+            int n = Integer.parseInt(args[0]);
+            int[] randData = new int[n];
 
-            int[] randData = new int[Integer.parseInt(args[0])];
-
+            Random random = new Random();
             //overhead: 1 random array generation.
             if (args.length < 3 || args[2].equals("random")) {
-	            System.out.println("REPLACE THIS LINE WITH ARRAY VALUE GENERATION!");
+                for (int i = 0; i < n; i++) {
+                    randData[i] = random.nextInt();
+                }
             } else if (args[2].equals("equal")) {
-	            System.out.println("REPLACE THIS LINE WITH ARRAY VALUE GENERATION!");
+                Arrays.fill(randData, random.nextInt());
             } else if (args[2].equals("sorted")) {
-	            System.out.println("REPLACE THIS LINE WITH ARRAY VALUE GENERATION!");
+                // integers from -2^31 to 2^31-1, somewhat evenly spread
+	            int value = Integer.MIN_VALUE;
+                int incBy = 2*(Integer.MAX_VALUE/n);
+                int maxInc = incBy;
+                for (int i = 0; i < n; i++) {
+                    int change = random.nextInt(maxInc);
+                    value += change;
+                    maxInc += incBy - change;
+                    randData[i] = value;
+                }
             } else if (args[2].equals("reversed")) {
-	            System.out.println("REPLACE THIS LINE WITH ARRAY VALUE GENERATION!");
+                // same as "sorted" except filling from back to front
+	            int value = Integer.MIN_VALUE;
+                int incBy = 2*(Integer.MAX_VALUE/n);
+                int maxInc = incBy;
+                for (int i = n-1; i >= 0; i--) {
+                    int change = random.nextInt(maxInc);
+                    value += change;
+                    maxInc += incBy - change;
+                    randData[i] = value;
+                }
             }
 
             if (args[1].equals("bubble")) {
@@ -66,5 +87,5 @@ public class Driver {
             }
         }
     }
-    
+
 }
